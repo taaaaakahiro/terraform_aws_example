@@ -30,4 +30,6 @@ terraform destroy
  - https://registry.terraform.io/providers/hashicorp/aws/latest/docs
 
 ## Link
+- https://zenn.dev/suganuma/articles/fe14451aeda28f  
+- 
 - 

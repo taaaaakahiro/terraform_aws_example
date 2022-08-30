@@ -4,7 +4,7 @@ resource "aws_vpc" "demo_vpc" {
     Name = "vpc_demo"
   }
 }
-
+# public subnet
 resource "aws_subnet" "demo_public_subnet" {
   vpc_id     = aws_vpc.demo_vpc.id
   cidr_block = "192.168.1.0/24"
@@ -14,7 +14,7 @@ resource "aws_subnet" "demo_public_subnet" {
   }
 }
 
-## praivate
+## praivate subnet
 resource "aws_subnet" "demo_private_db1" {
   vpc_id            = aws_vpc.demo_vpc.id
   cidr_block        = "192.168.2.0/24"
@@ -46,7 +46,7 @@ resource "aws_route_table" "demo_public_route" {
   }
 }
 
-resource "aws_route_table_association" "public-a" {
+resource "aws_route_table_association" "demo_public_a" {
   subnet_id      = aws_subnet.demo_public_subnet.id
   route_table_id = aws_route_table.demo_public_route.id
 }
@@ -58,4 +58,54 @@ resource "aws_internet_gateway" "demo_gw" {
   tags = {
     Name = "demo_gw"
   }
+}
+
+# Security Group
+resource "aws_security_group" "demo_public_web_sg" {
+    name = "public-web-sg"
+    vpc_id = aws_vpc.demo_vpc.id
+    ingress {
+        from_port = 22
+        to_port = 22
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    ingress {
+        from_port = 80
+        to_port = 80
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    egress {
+        from_port = 0
+        to_port = 0
+        protocol = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+    tags = {
+      Name = "demo_public_web_sg"
+    }
+}
+
+resource "aws_security_group" "demo_praivate_db_sg" {
+    name = "praivate-db-sg"
+    vpc_id = aws_vpc.demo_vpc.id
+    ingress {
+        from_port = 3306
+        to_port = 3306
+        protocol = "tcp"
+        cidr_blocks = ["10.0.1.0/24"]
+    }
+
+    egress {
+        from_port = 0
+        to_port = 0
+        protocol = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+    tags = {
+      Name = "demo_praivate_db_sg"
+    }
 }

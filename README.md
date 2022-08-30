@@ -28,8 +28,19 @@ terraform destroy
 
 ## Docs
  - https://registry.terraform.io/providers/hashicorp/aws/latest/docs
+ 
+## SetUp
 
-## Link
+## VPC
+
+## RDS
 - https://zenn.dev/suganuma/articles/fe14451aeda28f  
-- 
-- 
+- https://rurukblog.com/post/terraform-mysql/  
+
+## EC2
+
+## redis
+
+## ECR
+
+## ECS

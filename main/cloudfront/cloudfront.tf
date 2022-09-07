@@ -1,24 +1,3 @@
-// module practice
-module "module_local_file" {
-  source = "../modules/local_file"
-  content = "hello world!"
-  filename = "../modules/local_file/hello.txt"
-}
-
-// vpc
-module "module_vpc" {
-  source = "../modules/vpc"
-}
-
-// s3
-module "module_s3" {
-  source = "../modules/s3"
-}
-
-// rds
-# module "module_rds" {
-#   source = "../modules/rds"
-# }
 
 //cloudfront
 resource "aws_cloudfront_distribution" "main" {
@@ -83,30 +62,4 @@ resource "aws_s3_bucket_public_access_block" "main" {
   block_public_policy     = true
   ignore_public_acls      = true
   restrict_public_buckets = true
-}
-
-# バケットポリシー
-resource "aws_s3_bucket_policy" "main" {
-  bucket = aws_s3_bucket.main.id
-  policy = data.aws_iam_policy_document.s3_main_policy.json
-}
-
-data "aws_iam_policy_document" "s3_main_policy" {
-  # OAI からのアクセスのみ許可
-  statement {
-    principals {
-      type        = "Service"
-      identifiers = ["cloudfront.amazonaws.com"]
-      # Regacy
-      # type        = "AWS"
-      # identifiers = [aws_cloudfront_origin_access_identity.main.iam_arn]
-    }
-    actions   = ["s3:GetObject"]
-    resources = ["${aws_s3_bucket.main.arn}/*"]
-    condition {
-      test     = "StringEquals"
-      variable = "aws:SourceArn"
-      values   = [aws_cloudfront_distribution.main.arn]
-    }
-  }
 }

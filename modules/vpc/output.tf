@@ -1,4 +1,7 @@
-# vpcのidを取得
 output "vpc_id" {
-  value = aws_vpc.demo_vpc.id
+  value = aws_vpc.vpc.id
+}
+
+output "subnets" {
+  value = aws_subnet.public
 }

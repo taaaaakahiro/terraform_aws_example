@@ -2,7 +2,7 @@ terraform {
   required_version = ">= 0.11"
   backend "s3" {
     bucket = "terraform-example-tkoide"
-    key    = "vpc/terraform.tfstate"
+    key    = "dev/terraform.tfstate"
     region = "ap-northeast-1"
   }
 }

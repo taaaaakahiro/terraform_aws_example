@@ -1,16 +1,8 @@
-terraform {
-  required_version = ">= 0.11"
-  backend "s3" {
-    bucket = "terraform-example-tkoide"
-    key    = "cloudfront/terraform.tfstate"
-    region = "ap-northeast-1"
-  }
+module "cloudfront" {
+  source = "../../modules/cloudfront"
+  s3_bucket = module.s3.demo_s3
 }
 
-provider "aws" {
-  region = var.region
-}
-
-variable "region" {
-  default = "ap-northeast-1"
+module "s3" {
+  source = "../../modules/s3"
 }

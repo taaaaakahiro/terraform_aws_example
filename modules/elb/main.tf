@@ -36,6 +36,6 @@ resource "aws_lb_listener" "listener80" {
 resource "aws_lb_target_group_attachment" "tg_attach" {
   count            = length(var.pub_instances)
   target_group_arn = aws_lb_target_group.tg1.arn
-  target_id        = var.pub_instances[count.index].id
+  target_id        = var.pub_instances.id
   port             = 80
 }

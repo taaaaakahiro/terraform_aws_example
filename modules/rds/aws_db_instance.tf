@@ -1,57 +1,3 @@
-#----------------------------------------
-# RDS parameter group
-#----------------------------------------
-resource "aws_db_parameter_group" "mysql_parameter_group" {
-  name = "demo-mysql-param-standalone"
-  family = "mysql8.0"
-
-  # データベースに設定するパラメーター
-  parameter {
-    name = "character_set_database"
-    value = "utf8mb4"
-  }
-  parameter {
-    name = "character_set_server"
-    value = "utf8mb4"
-  }
-}
-
-#----------------------------------------
-# RDS option group
-#----------------------------------------
-resource "aws_db_option_group" "mysql_option_group" {
-  name = "demo-mysql-option-standalone"
-  engine_name = "mysql"
-  major_engine_version = "8.0"
-}
-
-#----------------------------------------
-# RDS subnet group
-#----------------------------------------
-resource "aws_db_subnet_group" "mysql_subnet_group" {
-  name = "demo-mysql-subnet-standalone"
-  # subnetの設定
-  subnet_ids = [
-    # subnetの設定(01_networkのoutputs.tfの情報を利用)　　
-    aws_subnet.demo_private_db1.id,
-    aws_subnet.demo_private_db2.id,
-    
-  ]
-  tags = {
-     Name = "demo-mysql-option-standalone"
-     Project = "test"
-     Env = "lab"
-  }
-}
-
-#----------------------------------------
-# RDS instance
-#----------------------------------------
-# ランダム文字列の初生成時はinitが必要
-resource "random_string" "db_passwrod" {
-  length = 16
-  special = false
-}
 
 # DBの作成(前回の作成時間：8m10s、削除時間：3m55s)
 resource "aws_db_instance" "mysql_standalone" {
@@ -129,4 +75,13 @@ resource "aws_db_instance" "mysql_standalone" {
      Project = "test"
      Env = "lab"
   }
+}
+
+#----------------------------------------
+# RDS instance
+#----------------------------------------
+# ランダム文字列の初生成時はinitが必要
+resource "random_string" "db_passwrod" {
+  length = 16
+  special = false
 }

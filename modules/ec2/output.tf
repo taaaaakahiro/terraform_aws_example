@@ -9,3 +9,7 @@ output "sg-elb" {
 output "pub_instances" {
   value = aws_instance.ec2
 }
+
+output "aws_eip" {
+  value =aws_eip.demo-eip.public_ip
+}

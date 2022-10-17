@@ -5,6 +5,7 @@ module "vpc" {
   env          = var.env
   cidr_vpc     = var.vpc_cidr
   cidr_public  = var.cidr_public
+  cidr_private = var.cidr_private
 }
 
 # ec2モジュールを呼び出す

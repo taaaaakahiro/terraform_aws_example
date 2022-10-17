@@ -23,6 +23,7 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
+// public subnet
 resource "aws_subnet" "public" {
   # lengthはterraformで用意された関数で配列の長さを返します
   count             = length(var.cidr_public)
@@ -52,4 +53,23 @@ resource "aws_route_table_association" "public" {
   count          = length(var.cidr_public)
   subnet_id      = element(aws_subnet.public.*.id, count.index)
   route_table_id = aws_route_table.public.id
+}
+
+// private subnet
+resource "aws_subnet" "private-db1" {
+    vpc_id = aws_vpc.vpc.id
+    cidr_block = var.cidr_private[0]
+    availability_zone = "ap-northeast-1a"
+    tags = {
+      Name = "demo-private-db1"
+    }
+}
+
+resource "aws_subnet" "private-db2" {
+    vpc_id = aws_vpc.vpc.id
+    cidr_block = var.cidr_private[1]
+    availability_zone = "ap-northeast-1c"
+    tags = {
+      Name = "demo-private-db2"
+    }
 }

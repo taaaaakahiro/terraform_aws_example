@@ -1,42 +1,65 @@
-# get availability_zones list.
-# For reference: availability_zone = data.aws_availability_zones.available.names[0]　
-data "aws_availability_zones" "available" {
-  state = "available"
-}
-
-# vpcの作成
+# --------------------------------------------------------------
+# VPC
+# --------------------------------------------------------------
 resource "aws_vpc" "vpc" {
-  # variable.tfで定義した"cidr_vpc"の値を参照
   cidr_block           = var.cidr_vpc
   instance_tenancy     = "default"
+  enable_dns_support = true
   enable_dns_hostnames = true
+
   tags = {
     Name = "${var.env}-${var.system}-vpc"
     Cost = "${var.system}"
-  }
-}
-resource "aws_internet_gateway" "igw" {
-  vpc_id = aws_vpc.vpc.id
-  tags = {
-    Name = "${var.env}-${var.system}-igw"
-    Cost = "${var.system}"
+    Env = "${var.env}"
   }
 }
 
-// public subnet
-resource "aws_subnet" "public" {
-  # lengthはterraformで用意された関数で配列の長さを返します
-  count             = length(var.cidr_public)
+# --------------------------------------------------------------
+# Subnet  パブリック、プライベート用にそれぞれ2つずつ構築
+# --------------------------------------------------------------
+resource "aws_subnet" "public_subnet_1a" {
   vpc_id            = aws_vpc.vpc.id
-  cidr_block        = element(var.cidr_public, count.index)
- # azはdataブロックで取得した配列を参照します。
-  availability_zone = data.aws_availability_zones.available.names[count.index % length(var.cidr_public)]
+  cidr_block        = var.cidr_public_1a
+  availability_zone = "ap-northeast-1a"
+
   tags = {
-    Name = "${var.env}-${var.system}-pub-${count.index + 1}"
+    Name = "${var.env}-${var.system}-pub-1a"
     Cost = "${var.system}"
   }
 }
 
+resource "aws_subnet" "public_subnet_1c" {
+  vpc_id            = aws_vpc.vpc.id
+  cidr_block        = var.cidr_public_1c
+  availability_zone = "ap-northeast-1c"
+
+  tags = {
+    Name = "${var.env}-${var.system}-pub-1c"
+    Cost = "${var.system}"
+  }
+}
+
+resource "aws_subnet" "private_subnet_1a" {
+    vpc_id = aws_vpc.vpc.id
+    cidr_block = var.cidr_private_1a
+    availability_zone = "ap-northeast-1a"
+    tags = {
+      Name = "private_subnet_1a"
+    }
+}
+
+resource "aws_subnet" "private_subnet_1c" {
+    vpc_id = aws_vpc.vpc.id
+    cidr_block = var.cidr_private_1c
+    availability_zone = "ap-northeast-1c"
+    tags = {
+      Name = "private_subnet_1c"
+    }
+}
+
+# --------------------------------------------------------------
+# Route Table
+# --------------------------------------------------------------
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.vpc.id
   route {
@@ -49,27 +72,31 @@ resource "aws_route_table" "public" {
   }
 }
 
-resource "aws_route_table_association" "public" {
-  count          = length(var.cidr_public)
-  subnet_id      = element(aws_subnet.public.*.id, count.index)
-  route_table_id = aws_route_table.public.id
+resource "aws_route_table" "private" {
+  vpc_id = aws_vpc.vpc.id
+
+  tags = {
+    Name = "${var.env}-${var.system}-pub-rt"
+    Cost = "${var.system}"
+  }
 }
 
-// private subnet
-resource "aws_subnet" "private-db1" {
-    vpc_id = aws_vpc.vpc.id
-    cidr_block = var.cidr_private[0]
-    availability_zone = "ap-northeast-1a"
-    tags = {
-      Name = "demo-private-db1"
-    }
+resource "aws_route_table_association" "private_route_table_1a" {
+  subnet_id      = aws_subnet.private_subnet_1a.id
+  route_table_id = aws_route_table.private.id
+}
+resource "aws_route_table_association" "private_route_table_1c" {
+  subnet_id      = aws_subnet.private_subnet_1c.id
+  route_table_id = aws_route_table.private.id
 }
 
-resource "aws_subnet" "private-db2" {
-    vpc_id = aws_vpc.vpc.id
-    cidr_block = var.cidr_private[1]
-    availability_zone = "ap-northeast-1c"
-    tags = {
-      Name = "demo-private-db2"
-    }
+# --------------------------------------------------------------
+# Internet Gateway
+# --------------------------------------------------------------
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.vpc.id
+  tags = {
+    Name = "${var.env}-${var.system}-igw"
+    Cost = "${var.system}"
+  }
 }

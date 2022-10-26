@@ -31,11 +31,7 @@ resource "aws_db_option_group" "mysql_option_group" {
 resource "aws_db_subnet_group" "mysql_subnet_group" {
   name = "demo-mysql-subnet-standalone"
   # subnetの設定
-  subnet_ids = [
-    # subnetの設定(01_networkのoutputs.tfの情報を利用)　　
-    aws_subnet.demo_private_db1.id,
-    aws_subnet.demo_private_db2.id,
-  ]
+  subnet_ids = [var.pri_subnet_id1,var.pri_subnet_id2]
   tags = {
      Name = "demo-mysql-option-standalone"
      Project = "test"

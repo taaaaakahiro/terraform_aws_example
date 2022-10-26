@@ -53,3 +53,16 @@ terraform destroy
 
 
     
+### Procedure
+ 1. make network
+    ```
+    $ cd ./dev/network
+    $ terraform plan
+    $ terraform apply  
+    ```
+2. make modules
+    ```
+    $ cd ./dev/services
+    $ terraform plan
+    $ terraform apply  
+    ```

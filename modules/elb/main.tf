@@ -3,7 +3,7 @@ resource "aws_lb" "alb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = ["${var.sg-elb}"]
-  subnets            = var.subnets.*.id
+  subnets            = var.subnets.*
   enable_deletion_protection = false
 
   tags = {

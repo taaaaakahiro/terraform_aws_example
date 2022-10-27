@@ -7,7 +7,7 @@ resource "aws_instance" "ec2" {
   vpc_security_group_ids = [
     "${aws_security_group.sg-ec2.id}"
   ]
-  subnet_id                   = element(var.subnets.*.id, count.index % length(var.subnets))
+  subnet_id                   = var.subnets
   associate_public_ip_address = "true"
   tags = {
     Name = "${var.env}-${var.system}-web"

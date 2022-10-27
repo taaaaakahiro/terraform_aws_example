@@ -9,7 +9,7 @@ resource "aws_db_instance" "mysql_standalone" {
   identifier = "demo-mysql-standalone"
   username = "admin"
   # パスワード。上記で生成したランダムな文字列を設定
-  password = random_string.db_passwrod.result
+  password = random_string.db_password.result
   instance_class = "db.t2.micro"
   allocated_storage = 20
   max_allocated_storage = 50
@@ -59,7 +59,7 @@ resource "aws_db_instance" "mysql_standalone" {
 
 
 # ランダム文字列の初生成時はinitが必要
-resource "random_string" "db_passwrod" {
+resource "random_string" "db_password" {
   length = 16
   special = false
 }

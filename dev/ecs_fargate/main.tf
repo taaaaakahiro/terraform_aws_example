@@ -2,6 +2,12 @@ module "ecr" {
   source = "../../modules/ecr"
 }
 
+module "ecs" {
+  source = "../../modules/ecs"
+  env = var.env
+  pub_subnet_web1 = data.terraform_remote_state.demo.outputs.pub_subnet_web1
+}
+
 terraform {
   required_version = ">= 0.11"
   backend "s3" {

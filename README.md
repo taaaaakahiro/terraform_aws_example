@@ -45,6 +45,8 @@ terraform destroy
 ### ECR
 
 ### ECS
+ - https://qiita.com/charon/items/15cb8be654c4a179e3a7  
+ 
 
 ### S3 
 - https://dev.classmethod.jp/articles/s3-cloudfront-static-site-design-patterns-2022/#note-917582-1  

@@ -11,7 +11,7 @@ variable "env" {
   default = "dev"
 }
 variable "myip" {
-    default = "0.0.0.0/0"
+  default = "0.0.0.0/0"
 }
 variable "instance_cnt" {
   default = 1

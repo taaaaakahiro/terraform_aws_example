@@ -11,5 +11,5 @@ output "pub_instances" {
 }
 
 output "aws_eip" {
-  value =aws_eip.demo-eip.public_ip
+  value = aws_eip.demo-eip.public_ip
 }

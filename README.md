@@ -8,7 +8,7 @@
 3. setting provider.tf  
 
 4. trraform command  
-```sh
+```
 terraform init
 terraform fmt
 terraform validate
@@ -56,13 +56,13 @@ terraform destroy
 
     
 ### Procedure
- 1. make network
+ 1. setup network
     ```
     $ cd ./dev/network
     $ terraform plan
     $ terraform apply  
     ```
-2. make modules
+2. setup modules
     ```
     $ cd ./dev/services
     $ terraform plan

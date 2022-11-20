@@ -1,18 +1,25 @@
-# terraform-practice
+# terraform-example
 
-### SetUp
- 1. setup network
-    ```
-    $ cd ./dev/network
-    $ terraform plan
-    $ terraform apply  
-    ```
-2. setup modules
-    ```
-    $ cd ./dev/services
-    $ terraform plan
-    $ terraform apply  
-    ```
+## terraform set up
+1.  env
+```
+$ export AWS_ACCESS_KEY_ID=XXXXXX
+$ export AWS_SECRET_ACCESS_KEY=XXXXXX
+```
+
+2. init network
+```
+$ cd ./dev/network
+$ terraform plan
+$ terraform apply  
+```
+
+3. move to targest
+```
+$ cd ./dev/<TARGET_DIRECTORY>
+$ terraform plan
+$ terraform apply -auto-approve  
+```
 
 ## Docs
  - https://registry.terraform.io/providers/hashicorp/aws/latest/docs
@@ -37,3 +44,4 @@
 
 ## CloudFront
     
+

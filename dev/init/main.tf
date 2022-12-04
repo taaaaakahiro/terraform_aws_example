@@ -10,3 +10,7 @@ module "vpc" {
   cidr_private_1a = var.cidr_private_1a
   cidr_private_1c = var.cidr_private_1c
 }
+
+module "ecr" {
+  source = "../../modules/ecr"
+}

@@ -17,29 +17,29 @@ resource "aws_vpc" "vpc" {
 # --------------------------------------------------------------
 # Subnet  パブリック、プライベート用にそれぞれ2つずつ構築
 # --------------------------------------------------------------
-resource "aws_subnet" "public_subnet_1a" {
+resource "aws_subnet" "pub_subnet_1a" {
   vpc_id            = aws_vpc.vpc.id
   cidr_block        = var.cidr_public_1a
   availability_zone = "ap-northeast-1a"
-
+  map_public_ip_on_launch = true
   tags = {
     Name = "${var.env}-${var.system}-pub-1a"
     Cost = "${var.system}"
   }
 }
 
-resource "aws_subnet" "public_subnet_1c" {
+resource "aws_subnet" "pub_subnet_1c" {
   vpc_id            = aws_vpc.vpc.id
   cidr_block        = var.cidr_public_1c
   availability_zone = "ap-northeast-1c"
-
+  map_public_ip_on_launch = true
   tags = {
     Name = "${var.env}-${var.system}-pub-1c"
     Cost = "${var.system}"
   }
 }
 
-resource "aws_subnet" "private_subnet_1a" {
+resource "aws_subnet" "pri_subnet_1a" {
     vpc_id = aws_vpc.vpc.id
     cidr_block = var.cidr_private_1a
     availability_zone = "ap-northeast-1a"
@@ -48,7 +48,7 @@ resource "aws_subnet" "private_subnet_1a" {
     }
 }
 
-resource "aws_subnet" "private_subnet_1c" {
+resource "aws_subnet" "pri_subnet_1c" {
     vpc_id = aws_vpc.vpc.id
     cidr_block = var.cidr_private_1c
     availability_zone = "ap-northeast-1c"

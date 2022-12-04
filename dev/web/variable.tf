@@ -1,27 +1,10 @@
-variable "instance_type" {
-  default = "t2.micro"
-}
-variable "region" {
-  default = "ap-northeast-1"
-}
-variable "system" {
-  default =  "demo"
-}
-variable "env" {
-  default = "dev"
-}
-variable "myip" {
-  default = "0.0.0.0/0"
-}
-variable "instance_cnt" {
-  default = 1
-}
-variable "ami" {
-  default = "ami-0701e21c502689c31"
-}
-variable "type" {
-  default = "t2.micro"
-}
-variable "key_name" {
-  default = "demo-key"
+locals {
+  region = "ap-northeast-1"
+  instance_type = "t2.micro"
+  system = "terraform-example"
+  env = "dev"
+  myip = "0.0.0.0/0"
+  instance_cnt = 1
+  ami = "ami-02892a4ea9bfa2192"
+  key_name = "demo-key"
 }

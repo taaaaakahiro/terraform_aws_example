@@ -1,6 +1,13 @@
+# terraform
 *.terraform/
 *.tfplan
 *.tfstate
 *.terraform.lock.hcl
 *.tfvars
+
+# env
 .envrc
+
+# key
+*key
+*.pub

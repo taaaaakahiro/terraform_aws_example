@@ -15,3 +15,7 @@ variable "resource_name" {
   type    = string
   default = "sample1"
 }
+
+locals {
+   ssm_parameter_store_base = "/zenn/prod"
+}

@@ -1,3 +1,34 @@
+
+####################################################
+# ALB Security Group
+####################################################
+resource "aws_lb" "this" {
+  name = "demo-integrated-alb"
+  load_balancer_type = "application"
+  security_groups = [
+    aws_security_group.alb.id
+  ]
+  subnets = [
+    aws_subnet.pub_subnet_1a.id,
+    aws_subnet.pub_subnet_1c.id,
+  ]
+}
+
+
+resource "aws_lb_listener" "http" {
+  load_balancer_arn = aws_lb.this.arn
+  port = "80"
+  protocol = "HTTP"
+  default_action {
+    type = "redirect"
+    redirect {
+      port = "443"
+      protocol = "HTTPS"
+      status_code = "HTTP_301"
+    }
+  }
+}
+
 ####################################################
 # ALB Security Group
 ####################################################
@@ -32,31 +63,4 @@ resource "aws_security_group_rule" "alb_https" {
   to_port           = 443
   type              = "ingress"
   cidr_blocks = ["0.0.0.0/0"]
-}
-
-resource "aws_lb" "this" {
-  name = "demo-integrated-alb"
-  load_balancer_type = "application"
-  security_groups = [
-    aws_security_group.alb.id
-  ]
-  subnets = [
-    aws_subnet.public_subnet_1a.id,
-    aws_subnet.public_subnet_1c.id,
-  ]
-}
-
-
-resource "aws_lb_listener" "http" {
-  load_balancer_arn = aws_lb.this.arn
-  port = "80"
-  protocol = "HTTP"
-  default_action {
-    type = "redirect"
-    redirect {
-      port = "443"
-      protocol = "HTTPS"
-      status_code = "HTTP_301"
-    }
-  }
 }

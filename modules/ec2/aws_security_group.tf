@@ -18,7 +18,6 @@ resource "aws_security_group" "sg-ec2" {
     cidr_blocks = [var.myip]
   }
 
-
   egress {
     from_port   = 0
     to_port     = 0

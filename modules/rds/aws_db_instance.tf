@@ -1,7 +1,6 @@
 #----------------------------------------
 # RDS instance
 #----------------------------------------
-
 resource "aws_db_instance" "mysql_standalone" {
   engine = "mysql"
   engine_version = "8.0"

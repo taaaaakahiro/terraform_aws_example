@@ -3,25 +3,25 @@ variable "system" {
 }
 
 variable "env" {
-     type = string
+    type = string
 }
 
 variable "cidr_vpc" {
-     type = string
+    type = string
 }
 
 variable "cidr_public_1a" {
-     type = string
+    type = string
 }
 
 variable "cidr_public_1c" {
-     type = string
+    type = string
 }
 
 variable "cidr_private_1a" {
-     type = string
+    type = string
 }
 
 variable "cidr_private_1c" {
-     type = string
+    type = string
 }

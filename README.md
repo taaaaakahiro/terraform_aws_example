@@ -2,20 +2,20 @@
 
 ## terraform set up
 1.  setup env
-```
+```sh
 $ export AWS_ACCESS_KEY_ID=XXXXXX
 $ export AWS_SECRET_ACCESS_KEY=XXXXXX
 ```
 
 2. init network
-```
+```sh
 $ cd ./init
 $ terraform plan
 $ terraform apply  
 ```
 
 3. move to targest
-```
+```sh
 $ cd ./dev/<TARGET_RESOURCE>
 $ terraform plan
 $ terraform apply

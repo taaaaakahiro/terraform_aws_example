@@ -1,2 +1,2 @@
-variable "pri_subnet_id1" {}
-variable "pri_subnet_id2" {}
+variable "pri_subnet_1a" {}
+variable "pri_subnet_1c" {}

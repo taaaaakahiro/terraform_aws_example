@@ -1,14 +1,16 @@
 
 resource "aws_instance" "ec2" {
-  count         = var.instance_cnt
-  ami           = var.ami
-  instance_type = var.type
-  key_name      = aws_key_pair.ec2-key.key_name
-  vpc_security_group_ids = ["${aws_security_group.sg-ec2.id}"]
+  count                       = var.instance_cnt
+  ami                         = var.ami
+  instance_type               = var.type
+  key_name                    = aws_key_pair.ec2-key.key_name
+  vpc_security_group_ids      = [
+    aws_security_group.sg-ec2.id,
+  ]
   iam_instance_profile        = var.iam_instance_profile
   subnet_id                   = var.subnets
   associate_public_ip_address = "true"
-  tags = {
+  tags                        = {
     Name = "${var.env}-${var.system}-web"
     Cost = "${var.system}"
   }
@@ -24,11 +26,12 @@ resource "aws_eip" "demo-eip" {
 #--------------------------------------------------------------
 
 resource "aws_key_pair" "ec2-key" {
-  key_name   = "common-ssh"
-  public_key = tls_private_key._.public_key_openssh
+  key_name   = var.key_name
+  public_key = file("${var.key_name}.pub")
+  # public_key = tls_private_key._.public_key_openssh
 }
 
-resource "tls_private_key" "_" {
-  algorithm = "RSA"
-  rsa_bits  = 4096
-}
+# resource "tls_private_key" "_" {
+#   algorithm = "RSA"
+#   rsa_bits  = 4096
+# }

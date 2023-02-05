@@ -1,7 +1,7 @@
 # terraform-example
 
 ## terraform set up
-1.  env
+1.  setup env
 ```
 $ export AWS_ACCESS_KEY_ID=XXXXXX
 $ export AWS_SECRET_ACCESS_KEY=XXXXXX
@@ -9,16 +9,16 @@ $ export AWS_SECRET_ACCESS_KEY=XXXXXX
 
 2. init network
 ```
-$ cd ./dev/network
+$ cd ./init
 $ terraform plan
 $ terraform apply  
 ```
 
 3. move to targest
 ```
-$ cd ./dev/<TARGET_DIRECTORY>
+$ cd ./dev/<TARGET_RESOURCE>
 $ terraform plan
-$ terraform apply -auto-approve  
+$ terraform apply
 ```
 
 ## Docs

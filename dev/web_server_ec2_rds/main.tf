@@ -18,7 +18,7 @@ module "ec2" {
   instance_cnt  = local.instance_cnt
   ami           = local.ami
   type          = local.instance_type
-  # key_name      = local.key_name
+  key_name      = local.key_name
   iam_instance_profile = module.iam.iam_instance_profile_name
 }
 
@@ -37,6 +37,7 @@ module "ec2" {
 
 module "rds" {
   source        = "../../modules/rds"
+  vpc_id        = data.terraform_remote_state.network.outputs.vpc_id
   pri_subnet_1a = data.terraform_remote_state.network.outputs.pri_subnet_1a
   pri_subnet_1c = data.terraform_remote_state.network.outputs.pri_subnet_1c
 }

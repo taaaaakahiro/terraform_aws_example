@@ -21,5 +21,5 @@ output "public_ip" {
 
 # sshコマンドを出力
 output "ssh_command" {
-  value = "ssh -i ${var.key_name} ec2-user@${aws_instance.ec2[0].public_ip}"
+  value = "ssh -i ${var.key_name} ec2-user@${aws_eip.demo-eip.public_ip}"
 }

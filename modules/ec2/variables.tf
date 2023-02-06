@@ -6,5 +6,5 @@ variable "instance_cnt" {}
 variable "subnet_id" {}
 variable "ami" {}
 variable "type" {}
-# variable "key_name" {}
+variable "key_name" {}
 variable "iam_instance_profile" {}

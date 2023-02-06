@@ -28,16 +28,10 @@ resource "aws_eip" "demo-eip" {
 
 resource "aws_key_pair" "ec2_key" {
   key_name   = var.key_name
-  public_key = file("${var.key_name}.pub")
-  # public_key = tls_private_key._.public_key_openssh
+  public_key = tls_private_key._.public_key_openssh
 }
 
-variable "key_name" {
-  type    = string
-  default = "ec2_key"
+resource "tls_private_key" "_" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
 }
-
-# resource "tls_private_key" "_" {
-#   algorithm = "RSA"
-#   rsa_bits  = 4096
-# }

@@ -29,6 +29,9 @@ $ terraform apply
 - https://rurukblog.com/post/terraform-mysql/  
 
 ### EC2
+```sh
+$ ssh-keygen -N "" -f ec2_key #key generate
+```
 
 ### Redis
 

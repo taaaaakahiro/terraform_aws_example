@@ -14,6 +14,8 @@ resource "aws_db_instance" "mysql_standalone" {
   max_allocated_storage = 50
   storage_type = "gp2"
   storage_encrypted = false
+  # セキュリティグループ
+  vpc_security_group_ids = [aws_security_group.db.id]
   # マルチAZの設定を行うかどうか設定する
   multi_az = false
   # マルチAZを行わない場合は、DBの配置先を指定する
@@ -61,4 +63,27 @@ resource "aws_db_instance" "mysql_standalone" {
 resource "random_string" "db_password" {
   length = 16
   special = false
+}
+
+resource "aws_security_group" "db" {
+  name   = "db_sg"
+  vpc_id = var.vpc_id
+}
+
+resource "aws_security_group_rule" "ingress" {
+  type              = "ingress"
+  from_port         = 3306
+  to_port           = 3306
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"] # 接続元を限定する場合は変更する
+  security_group_id = aws_security_group.db.id
+}
+
+resource "aws_security_group_rule" "egress" {
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.db.id
 }

@@ -27,6 +27,8 @@ $ terraform apply
 ### RDS
 - https://zenn.dev/suganuma/articles/fe14451aeda28f  
 - https://rurukblog.com/post/terraform-mysql/  
+- https://dev.classmethod.jp/articles/sales-rds-ec2-session/
+
 
 ### EC2
 ```sh

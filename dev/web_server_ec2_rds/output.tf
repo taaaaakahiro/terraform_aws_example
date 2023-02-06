@@ -14,10 +14,6 @@ output "aws_eip" {
     value = module.ec2.aws_eip
 }
 
-output "public_ip" {
-    value = module.ec2.public_ip
-}
-
 output "ssh_command" {
     value = module.ec2.ssh_command
 }

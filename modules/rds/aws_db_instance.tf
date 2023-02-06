@@ -1,7 +1,7 @@
 #----------------------------------------
 # RDS instance
 #----------------------------------------
-resource "aws_db_instance" "mysql_standalone" {
+resource "aws_db_instance" "rds" {
   engine = "mysql"
   engine_version = "8.0"
   # dbの名前（任意）
@@ -52,7 +52,7 @@ resource "aws_db_instance" "mysql_standalone" {
 
   # -- タグの設定
   tags = {
-     Name = "demo-mysql-option-standalone"
+     Name = "${var.env}-${var.system}-mysql"
      Project = "test"
      Env = "lab"
   }

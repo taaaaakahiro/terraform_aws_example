@@ -15,9 +15,9 @@ output "aws_eip" {
 }
 
 # パブリックIPを出力
-output "public_ip" {
-  value = aws_instance.ec2[0].public_ip
-}
+# output "public_ip" {
+#   value = aws_instance.ec2[0].public_ip
+# }
 
 # sshコマンドを出力
 output "ssh_command" {

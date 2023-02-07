@@ -25,14 +25,16 @@ $ terraform apply
  - https://registry.terraform.io/providers/hashicorp/aws/latest/docs
 
 ### RDS
-- https://zenn.dev/suganuma/articles/fe14451aeda28f  
-- https://rurukblog.com/post/terraform-mysql/  
-- https://dev.classmethod.jp/articles/sales-rds-ec2-session/
-
+```sh
+$ cd ./dev/db_rds_mysql_bation
+$ ssh-keygen -N "" -f ec2_key # key generate
+$ terraform apply
+```
+- wiki
+    - https://github.com/taaaaakahiro/terraform_aws_example/wiki/%5B%E5%8F%82%E8%80%83%5DRDS(MySQL)%E3%81%B8bation%E7%B5%8C%E7%94%B1%E3%81%A7SSH%E6%8E%A5%E7%B6%9A
 
 ### EC2
 ```sh
-$ ssh-keygen -N "" -f ec2_key #key generate
 ```
 
 ### Redis

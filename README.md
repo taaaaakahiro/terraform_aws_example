@@ -50,5 +50,10 @@ $ terraform apply
 - https://d1zkwh5t4jd0q6.cloudfront.net  
 
 ## CloudFront
-    
+
+
+## Route53
+ - https://dev.classmethod.jp/articles/onamae-to-route53/
+ - 注意
+    - ドメインを移管するときはドメイン発効から60日以上経っていること
 

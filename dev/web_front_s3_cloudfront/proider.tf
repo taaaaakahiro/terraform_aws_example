@@ -1,5 +1,11 @@
 terraform {
   required_version = ">= 0.13"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 4.29.0"
+    }
+  }
   backend "s3" {
     # bucket = "terraform-example-tkoide"
     bucket = "tak-terraform-example"
@@ -10,5 +16,20 @@ terraform {
 
 provider "aws" {
   region = local.region
+  default_tags {
+    tags = {
+      Environment = local.env
+    }
+  }
+}
+
+provider "aws" {
+  alias  = "us-east-1"
+  region = "us-east-1"
+  default_tags {
+    tags = {
+      Environment = local.env
+    }
+  }
 }
 

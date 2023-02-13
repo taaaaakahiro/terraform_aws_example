@@ -11,7 +11,7 @@ resource "aws_route53_record" "this" {
 
 resource "aws_route53_record" "cloud_front" {
   zone_id = aws_route53_zone.this.zone_id
-  name    = var.hosted_zone
+  name    = "front.${var.hosted_zone}"
   type    = "A"
   alias {
     name                   = var.cloudfront_distribution.domain_name

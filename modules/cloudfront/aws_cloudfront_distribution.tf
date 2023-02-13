@@ -1,6 +1,10 @@
 resource "aws_cloudfront_distribution" "main" {
   enabled = true
-  aliases             = [var.hosted_zone]
+  aliases             = ["front.${var.hosted_zone}"]
+  http_version        = "http2"
+  is_ipv6_enabled     = false
+  web_acl_id          = null
+  default_root_object = "index.html"
 
   origin {
     origin_id                = var.s3_main.id
@@ -15,20 +19,13 @@ resource "aws_cloudfront_distribution" "main" {
     ssl_support_method             = "sni-only"
   }
 
-  default_root_object = "index.html"
-
   default_cache_behavior {
-    target_origin_id       = var.s3_main.id
+    # target_origin_id       = var.s3_main.id
     viewer_protocol_policy = "redirect-to-https"
+    target_origin_id       = var.s3_main.bucket_regional_domain_name
     cached_methods         = ["GET", "HEAD"]
     allowed_methods        = ["GET", "HEAD"]
-    forwarded_values {
-      query_string = false
-      headers      = []
-      cookies {
-        forward = "none"
-      }
-    }
+    compress               = true
   }
 
   restrictions {

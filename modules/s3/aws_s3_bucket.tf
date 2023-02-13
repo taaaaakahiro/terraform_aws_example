@@ -4,9 +4,9 @@ resource "aws_s3_bucket" "main" {
   force_destroy = true
 }
 
-resource "aws_s3_object" "hello_txt" {
+resource "aws_s3_object" "index_html" {
   bucket  = aws_s3_bucket.main.id
-  key     = "hello.txt"
+  key     = "index.html"
   content = "hello world"
 }
 

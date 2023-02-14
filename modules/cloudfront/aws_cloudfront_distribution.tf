@@ -7,7 +7,7 @@ resource "aws_cloudfront_distribution" "main" {
   default_root_object = "index.html"
 
   origin {
-    origin_id                = var.s3_main.id
+    origin_id                = var.s3_main.bucket_regional_domain_name
     domain_name              = var.s3_main.bucket_regional_domain_name
     origin_access_control_id = aws_cloudfront_origin_access_control.main.id
   }
@@ -33,4 +33,8 @@ resource "aws_cloudfront_distribution" "main" {
       restriction_type = "none"
     }
   }
+
+  # viewer_certificate {
+  #   cloudfront_default_certificate = true
+  # }
 }

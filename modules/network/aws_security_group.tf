@@ -2,7 +2,6 @@
 #--------------------------------------------------------------
 # Security group
 #--------------------------------------------------------------
-
 resource "aws_security_group" "bation" {
   name = "${var.system}-ec2-sg"
 
@@ -43,6 +42,11 @@ variable "ingress_config" {
     },
     {
       port        = 3306
+      protocol    = "tcp"
+      cidr_blocks = ["10.0.0.0/16"]
+    },
+     {
+      port        = 5432
       protocol    = "tcp"
       cidr_blocks = ["10.0.0.0/16"]
     }

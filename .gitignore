@@ -11,3 +11,5 @@
 # key
 *key
 *.pub
+
+.DS*

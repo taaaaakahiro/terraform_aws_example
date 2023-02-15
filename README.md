@@ -53,3 +53,6 @@ $ terraform apply
  - 注意
     - ドメインを移管するときはドメイン発効から60日以上経っていること
 
+## terraform
+### terraform import
+ - https://tech.layerx.co.jp/entry/improve-iac-development-with-terraform-import

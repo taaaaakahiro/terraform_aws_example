@@ -44,3 +44,25 @@ resource "aws_subnet" "pri_subnet_1c" {
       Name = "private_subnet_1c"
     }
 }
+
+
+# --------------------------------------------------------------
+# Subnet  database
+# --------------------------------------------------------------
+resource "aws_subnet" "pri_subnet_db_1a" {
+    vpc_id = aws_vpc.vpc.id
+    cidr_block = var.cidr_private_db_1a
+    availability_zone = "ap-northeast-1a"
+    tags = {
+      Name = "private_subnet_db_1a"
+    }
+}
+
+resource "aws_subnet" "pri_subnet_db_1c" {
+    vpc_id = aws_vpc.vpc.id
+    cidr_block = var.cidr_private_db_1c
+    availability_zone = "ap-northeast-1c"
+    tags = {
+      Name = "private_subnet_db_1c"
+    }
+}

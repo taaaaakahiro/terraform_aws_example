@@ -1,5 +1,6 @@
 variable "env" {}
 variable "system" {}
+variable "key_name" {}
 variable "sg_bastion_ssh" {}
 variable "instance_cnt" {}
 variable "ami" {}

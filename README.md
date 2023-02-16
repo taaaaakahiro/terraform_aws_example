@@ -35,7 +35,8 @@ $ terraform apply
  - RDS for postgres
 ```sh
 $ sudo yum install postgresql # psql install
-$ psql --host=<HOST> --port=<PORT> --username=<USER_NAME> --password --dbname=<DB_NAME> # login
+$ psql --host=<HOST> --port=5432 --username=demo_admin --password --dbname=example # login
+
 ```
 - wiki
     - https://github.com/taaaaakahiro/terraform_aws_example/wiki/%5B%E5%8F%82%E8%80%83%5DRDS(MySQL)%E3%81%B8bation%E7%B5%8C%E7%94%B1%E3%81%A7SSH%E6%8E%A5%E7%B6%9A

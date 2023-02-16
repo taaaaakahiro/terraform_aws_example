@@ -19,7 +19,7 @@ module "ec2" {
 }
 
 module "rds" {
-  source        = "../../modules/rds"
+  source        = "../../modules/rds_mysql"
   system        = local.system
   env           = local.env
   vpc_id        = data.terraform_remote_state.network.outputs.vpc_id

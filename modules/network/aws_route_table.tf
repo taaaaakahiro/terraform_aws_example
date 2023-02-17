@@ -75,3 +75,7 @@ resource "aws_route_table_association" "private_route_table_db_1c" {
   subnet_id      = aws_subnet.pri_subnet_db_1c.id
   route_table_id = aws_route_table.private_db.id
 }
+resource "aws_route_table_association" "private_route_table_db_1d" {
+  subnet_id      = aws_subnet.pri_subnet_db_1d.id
+  route_table_id = aws_route_table.private_db.id
+}

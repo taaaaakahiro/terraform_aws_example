@@ -9,6 +9,7 @@ module "network" {
   cidr_private_1c    = local.cidr_pri_1c
   cidr_private_db_1a = local.cidr_pri_db_1a
   cidr_private_db_1c = local.cidr_pri_db_1c
+  cidr_private_db_1d = local.cidr_pri_db_1d
 }
 
 module "ecr" {

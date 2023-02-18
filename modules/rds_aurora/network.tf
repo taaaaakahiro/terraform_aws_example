@@ -6,47 +6,20 @@
 resource "aws_vpc" "this" {
   cidr_block = "10.0.0.0/16"
   tags = {
-    Name = local.app_name
+    Name = var.service
   }
 }
 
 ####################################################
-# Public Subnet
+# Internet Gateway
 ####################################################
 
 resource "aws_internet_gateway" "this" {
   vpc_id = aws_vpc.this.id
   tags = {
-    Name = local.app_name
+    Name = var.service
   }
 }
-
-# resource "aws_subnet" "public_1a" {
-#   vpc_id = aws_vpc.this.id
-#   cidr_block = "10.0.1.0/24"
-#   availability_zone = "ap-northeast-1a"
-#   tags = {
-#     Name = "${local.app_name}-public-1a"
-#   }
-# }
-
-# resource "aws_subnet" "public_1c" {
-#   vpc_id = aws_vpc.this.id
-#   cidr_block = "10.0.2.0/24"
-#   availability_zone = "ap-northeast-1c"
-#   tags = {
-#     Name = "${local.app_name}-public-1c"
-#   }
-# }
-
-# resource "aws_subnet" "public_1d" {
-#   vpc_id     = aws_vpc.this.id
-#   cidr_block = "10.0.3.0/24"
-#   availability_zone = "ap-northeast-1d"
-#   tags = {
-#     Name = "${local.app_name}-public-1d"
-#   }
-# }
 
 ####################################################
 # Private Subnet
@@ -57,7 +30,7 @@ resource "aws_subnet" "private_1a" {
   cidr_block = "10.0.10.0/24"
   availability_zone = "ap-northeast-1a"
   tags = {
-    Name = "${local.app_name}-private-1a"
+    Name = "${var.env}-${var.service}-private-1a"
   }
 }
 
@@ -66,7 +39,7 @@ resource "aws_subnet" "private_1c" {
   cidr_block = "10.0.20.0/24"
   availability_zone = "ap-northeast-1c"
   tags = {
-    Name = "${local.app_name}-private-1c"
+    Name = "${var.env}-${var.service}-private-1c"
   }
 }
 
@@ -75,10 +48,13 @@ resource "aws_subnet" "private_1d" {
   cidr_block = "10.0.30.0/24"
   availability_zone = "ap-northeast-1d"
   tags = {
-    Name = "${local.app_name}-private-1d"
+    Name = "${var.env}-${var.service}-private-1d"
   }
 }
 
+####################################################
+# Route Table
+####################################################
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.this.id
   route {
@@ -86,6 +62,6 @@ resource "aws_route_table" "public" {
     gateway_id = aws_internet_gateway.this.id
   }
   tags = {
-    Name = "${local.app_name}-public"
+    Name = "${var.env}-${var.service}-public"
   }
 }

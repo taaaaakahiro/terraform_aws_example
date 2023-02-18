@@ -39,6 +39,7 @@ variable "key_name" {
   type    = string
   default = "ec2_key"
 }
+
 variable "resource_name" {
   type    = string
   default = "sample1"

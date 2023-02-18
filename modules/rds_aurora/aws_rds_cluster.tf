@@ -47,13 +47,8 @@ resource "aws_rds_cluster_parameter_group" "this" {
   }
 }
 
-
-####################################################
-# Create SSM DB url
-####################################################
-
-# resource "aws_ssm_parameter" "database_url" {
-#   name  = "${local.ssm_parameter_store_base}/database_url"
-#   type  = "String"
-#   value = aws_rds_cluster.this.endpoint
-# }
+# ランダム文字列の初生成時はinitが必要
+resource "random_string" "db_password" {
+  length = 16
+  special = false
+}

@@ -32,9 +32,9 @@ $ cd ./dev/db_rds_mysql_bation
 $ ssh-keygen -N "" -f ec2_key # key generate
 $ terraform apply
 ```
- - RDS for postgres
+ - RDS for postgres(MySQL)
 ```sh
-$ sudo yum install postgresql # psql install
+$ sudo yum install postgresql # or sudo yum install mysql
 $ psql --host=<HOST> --port=5432 --username=demo_admin --password --dbname=example # login
 
 ```

@@ -28,6 +28,6 @@ resource "aws_iam_role_policy_attachment" "ec2" {
 }
 
 resource "aws_iam_instance_profile" "systems-manager" {
-  name = "${var.name}-ec2-instance-profile"
+  name = "${var.service}-ec2-instance-profile"
   role = aws_iam_role.ec2.name
 }

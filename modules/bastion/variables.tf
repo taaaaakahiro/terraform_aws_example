@@ -1,5 +1,5 @@
 variable "env" {}
-variable "system" {}
+variable "service" {}
 variable "key_name" {}
 variable "sg_bastion_ssh" {}
 variable "instance_cnt" {}

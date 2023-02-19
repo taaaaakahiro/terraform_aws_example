@@ -6,6 +6,6 @@ output "iam_role_arn" {
     value = aws_iam_role.ec2.arn
 }
 
-output "iam_instance_profile_name" {
+output "iam_instance_profile_ssm" {
     value = aws_iam_instance_profile.systems-manager.name
 }

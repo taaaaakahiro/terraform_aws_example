@@ -8,7 +8,7 @@ resource "aws_instance" "ec2" {
   subnet_id                   = var.pub_subnet_1a
   associate_public_ip_address = "true"
   tags                        = {
-    Name = "${var.env}-${var.system}-web"
-    Cost = "${var.system}"
+    Name = "${var.env}-${var.service}-web"
+    Cost = "${var.service}"
   }
 }

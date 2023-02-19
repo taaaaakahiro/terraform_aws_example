@@ -20,12 +20,12 @@ resource "aws_cloudfront_distribution" "main" {
   }
 
   default_cache_behavior {
-    # target_origin_id       = var.s3_main.id
     viewer_protocol_policy = "redirect-to-https"
     target_origin_id       = var.s3_main.bucket_regional_domain_name
     cached_methods         = ["GET", "HEAD"]
     allowed_methods        = ["GET", "HEAD"]
     compress               = true
+    cache_policy_id        = "4135ea2d-6df8-44a3-9df3-4b5a84be39ad" // required
   }
 
   restrictions {
@@ -34,7 +34,4 @@ resource "aws_cloudfront_distribution" "main" {
     }
   }
 
-  # viewer_certificate {
-  #   cloudfront_default_certificate = true
-  # }
 }

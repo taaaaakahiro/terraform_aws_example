@@ -59,6 +59,7 @@ $ psql --host=<HOST> --port=5432 --username=demo_admin --password --dbname=examp
  - https://dev.classmethod.jp/articles/onamae-to-route53/
  - 注意
     - ドメインを移管するときはドメイン発効から60日以上経っていること
+    - terraformで作成したホストゾーンのNSレコードをドメインのNSレコードに書き換える(AWSから変更メールあり)
 
 ## terraform
 ### terraform import

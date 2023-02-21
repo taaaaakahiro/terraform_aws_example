@@ -33,3 +33,11 @@ output "pri_subnet_db_1d" {
 output "aws_security_group_bation_id" {
   value = aws_security_group.bation.id
 }
+
+output "sg_vpce_id" {
+  value = aws_security_group.vpce.id
+}
+
+output "sg_alb_id" {
+  value = aws_security_group.alb.id
+}

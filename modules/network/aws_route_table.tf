@@ -9,8 +9,8 @@ resource "aws_route_table" "public" {
     gateway_id = aws_internet_gateway.igw.id
   }
   tags = {
-    Name = "${var.env}-${var.system}-pub-rt"
-    Cost = "${var.system}"
+    Name = "${var.env}-${var.service}-pub-rt"
+    Cost = "${var.service}"
   }
 }
 
@@ -24,8 +24,8 @@ resource "aws_route_table" "private" {
   vpc_id = aws_vpc.vpc.id
 
   tags = {
-    Name = "${var.env}-${var.system}-pub-rt"
-    Cost = "${var.system}"
+    Name = "${var.env}-${var.service}-pub-rt"
+    Cost = "${var.service}"
   }
 }
 
@@ -33,8 +33,8 @@ resource "aws_route_table" "private_db" {
   vpc_id = aws_vpc.vpc.id
 
   tags = {
-    Name = "${var.env}-${var.system}-pub-rt-db"
-    Cost = "${var.system}"
+    Name = "${var.env}-${var.service}-pub-rt-db"
+    Cost = "${var.service}"
   }
 }
 

@@ -1,9 +1,9 @@
-data "terraform_remote_state" "demo" {
+data "terraform_remote_state" "web_front" {
   backend = "s3"
  
   config = {
-    bucket = "terraform-example-tkoide"
-    key    = "dev/network/terraform.tfstate"
+   bucket = "tak-terraform-example"
+    key    = "dev/web_front/terraform.tfstate"
     region = "ap-northeast-1"
   }
 }

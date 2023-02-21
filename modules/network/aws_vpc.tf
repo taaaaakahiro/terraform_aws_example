@@ -8,8 +8,8 @@ resource "aws_vpc" "vpc" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "${var.env}-${var.system}-vpc"
-    Cost = "${var.system}"
+    Name = "${var.env}-${var.service}-vpc"
+    Cost = "${var.service}"
     Env = "${var.env}"
   }
 }

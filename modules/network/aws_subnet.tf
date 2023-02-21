@@ -8,8 +8,8 @@ resource "aws_subnet" "pub_subnet_1a" {
   availability_zone = "ap-northeast-1a"
   map_public_ip_on_launch = true
   tags = {
-    Name = "${var.env}-${var.system}-pub-1a"
-    Cost = "${var.system}"
+    Name = "${var.env}-${var.service}-pub-1a"
+    Cost = "${var.service}"
   }
 }
 
@@ -19,8 +19,8 @@ resource "aws_subnet" "pub_subnet_1c" {
   availability_zone = "ap-northeast-1c"
   map_public_ip_on_launch = true
   tags = {
-    Name = "${var.env}-${var.system}-pub-1c"
-    Cost = "${var.system}"
+    Name = "${var.env}-${var.service}-pub-1c"
+    Cost = "${var.service}"
   }
 }
 

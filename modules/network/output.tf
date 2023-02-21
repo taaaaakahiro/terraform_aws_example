@@ -41,3 +41,7 @@ output "sg_vpce_id" {
 output "sg_alb_id" {
   value = aws_security_group.alb.id
 }
+
+output "sg_alb_container_id" {
+  value = aws_security_group.container.id
+}

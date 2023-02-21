@@ -1,0 +1,33 @@
+[
+    {
+      "name": "dev-app",
+      "image": "575149834503.dkr.ecr.ap-northeast-1.amazonaws.com/web_server_ecs:latest",
+      "essential": true,
+      "network_mode": "awsvpc",
+      "healthCheck": {
+        "command": ["CMD-SHELL", "curl http://127.0.0.1/ || exit 1"],
+        "interval": 20,
+        "timeout": 5,
+        "start period": 0
+      },
+      "cpu": 256,
+      "memoryReservation": 512,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-region": "ap-northeast-1",
+          "awslogs-stream-prefix": "api-go",
+          "awslogs-group": "/ecs/tmp-dev"
+        }
+      },
+      "environment": [],
+      "portMappings": [
+        {
+          "protocol": "tcp",
+          "containerPort": 80
+        }
+      ]
+    }
+  ]
+  

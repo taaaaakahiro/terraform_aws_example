@@ -1,7 +1,16 @@
-# module "ecs" {
-#   source = "../../modules/ecs"
-#   env = var.env
-# }
+data "aws_caller_identity" "current" {}
+
+module "ecs" {
+  source                    = "../../modules/ecs"
+  env                       = local.env
+  service                   = local.service
+  account_id                = data.aws_caller_identity.current.account_id
+  alb_tg_arn                = module.alb.alb_tg_arn
+  subnet_container_1a       = module.network.pri_subnet_1a
+  subnet_container_1c       = module.network.pri_subnet_1c
+  container_definition_file = file("./container_definition.json")
+  sg_alb_id                 = module.network.sg_alb_container_id
+}
 
 module "network" {
   source = "../../modules/network"

@@ -120,6 +120,9 @@ resource "aws_security_group" "container" {
   }
 }
 
+#--------------------------------------------------------------
+# Security group vpc_endpoint
+#--------------------------------------------------------------
 resource "aws_security_group" "vpce" {
   name        = "${var.env}-sg-vpce"
   description = "sg vpce"

@@ -1,6 +1,6 @@
 
 # --------------------------------------------------------------
-# Route Table
+# Route Table Public
 # --------------------------------------------------------------
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.vpc.id
@@ -20,6 +20,9 @@ resource "aws_route" "public" {
   destination_cidr_block = "0.0.0.0/0"
 }
 
+# --------------------------------------------------------------
+# Route Table Private
+# --------------------------------------------------------------
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.vpc.id
 
@@ -40,7 +43,7 @@ resource "aws_route_table" "private_db" {
 
 
 # --------------------------------------------------------------
-# Route Table Public
+# Route Table Association Public
 # --------------------------------------------------------------
 resource "aws_route_table_association" "public_route_table_1a" {
   subnet_id      = aws_subnet.pub_subnet_1a.id
@@ -53,7 +56,7 @@ resource "aws_route_table_association" "public_route_table_1c" {
 
 
 # --------------------------------------------------------------
-# Route Table Private
+# Route Table Association Private
 # --------------------------------------------------------------
 resource "aws_route_table_association" "private_route_table_1a" {
   subnet_id      = aws_subnet.pri_subnet_1a.id
@@ -65,7 +68,7 @@ resource "aws_route_table_association" "private_route_table_1c" {
 }
 
 # --------------------------------------------------------------
-# Route Table Private Database
+# Route Table Association Private Database
 # --------------------------------------------------------------
 resource "aws_route_table_association" "private_route_table_db_1a" {
   subnet_id      = aws_subnet.pri_subnet_db_1a.id

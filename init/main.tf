@@ -1,6 +1,6 @@
 module "network" {
   source             = "../modules/network"
-  system             = local.system
+  service            = local.service
   env                = local.env
   cidr_vpc           = local.vpc_cidr
   cidr_public_1a     = local.cidr_pub_1a

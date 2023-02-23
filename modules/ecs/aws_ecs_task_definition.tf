@@ -4,8 +4,8 @@ resource "aws_ecs_task_definition" "this" {
   cpu                      = 256
   memory                   = 512
   requires_compatibilities = ["FARGATE"]
-  task_role_arn            = "arn:aws:iam::${var.account_id}:role/ecsTaskExecutionRole"
-  execution_role_arn       = "arn:aws:iam::${var.account_id}:role/ecsTaskExecutionRole"
+  task_role_arn            = aws_iam_role.task_role.arn
+  execution_role_arn       = aws_iam_role.execution_role.arn
   container_definitions    = var.container_definition_file
 
 }

@@ -36,12 +36,12 @@ module "alb" {
   sg_elb            = module.network.sg_alb_id
 }
 
-module "rds" {
-  source           = "../../modules/rds_aurora"
-  env              = local.env
-  service          = local.service
-  vpc_id           = module.network.vpc_id
-  pri_subnet_db_1a = module.network.pri_subnet_db_1a
-  pri_subnet_db_1c = module.network.pri_subnet_db_1c
-  pri_subnet_db_1d = module.network.pri_subnet_db_1d
-}
+# module "rds" {
+#   source           = "../../modules/rds_aurora"
+#   env              = local.env
+#   service          = local.service
+#   vpc_id           = module.network.vpc_id
+#   pri_subnet_db_1a = module.network.pri_subnet_db_1a
+#   pri_subnet_db_1c = module.network.pri_subnet_db_1c
+#   pri_subnet_db_1d = module.network.pri_subnet_db_1d
+# }

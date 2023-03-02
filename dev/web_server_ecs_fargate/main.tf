@@ -34,6 +34,8 @@ module "alb" {
   pub_subnet_alb_1a = module.network.pub_subnet_1a
   pub_subnet_alb_1c = module.network.pub_subnet_1c
   sg_elb            = module.network.sg_alb_id
+  zone_id           = data.terraform_remote_state.web_front.outputs.zone_id
+  acm_certificate_arn = data.terraform_remote_state.web_front.outputs.acm_certificate_arn
 }
 
 # module "rds" {

@@ -16,3 +16,12 @@ resource "aws_acm_certificate" "cloudfront_acm" {
   }
 }
 
+resource "aws_acm_certificate" "alb_acm" {
+  domain_name       = "*.${var.hosted_zone}"
+  validation_method = "DNS"
+  provider          = aws.us-east-1
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+

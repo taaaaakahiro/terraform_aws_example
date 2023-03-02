@@ -1,4 +1,4 @@
-resource "aws_lb" "alb" {
+resource "aws_lb" "this" {
   name               = "${var.env}-${var.service}-alb"
   internal           = false
   load_balancer_type = "application"
@@ -7,7 +7,6 @@ resource "aws_lb" "alb" {
     var.pub_subnet_alb_1a,
     var.pub_subnet_alb_1c,
   ]
-  enable_deletion_protection = false
 
   tags = {
     Name = "${var.env}-${var.service}-alb"
